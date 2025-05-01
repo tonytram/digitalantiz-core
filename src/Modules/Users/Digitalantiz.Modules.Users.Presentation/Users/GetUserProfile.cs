@@ -15,13 +15,13 @@ internal sealed class GetUserProfile : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapGet("users/profile", async (ClaimsPrincipal claims, ISender sender) =>
+        app.MapGet("users/{id}/profile", async (Guid id, ISender sender) =>
         {
-            Result<UserResponse> result = await sender.Send(new GetUserQuery(claims.GetUserId()));
+            Result<UserResponse> result = await sender.Send(new GetUserQuery(id));
 
             return result.Match(Results.Ok, ApiResults.Problem);
         })
-        .RequireAuthorization("users:read")
+        .RequireAuthorization()
         .WithTags(Tags.Users);
     }
 }

@@ -4,7 +4,7 @@
       "AdminUrl": "http://digitalantiz.identity:8080/admin/realms/digitalantiz/",
       "TokenUrl": "http://digitalantiz.identity:8080/realms/digitalantiz/protocol/openid-connect/token",
       "ConfidentialClientId": "digitalantiz-confidential-client",
-      "ConfidentialClientSecret": "PzotcrvZRF9BHCKcUxdKfHWlIPECG49k",
+      "ConfidentialClientSecret": "aDXKruYFvxAYI0iZNz3c9IbZDw6O1H6P",
       "PublicClientId": "digitalantiz-public-client"
     }
   }
