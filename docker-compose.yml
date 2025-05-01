@@ -36,33 +36,19 @@ services:
     restart: always
     ports:
       - 6379:6379
-  
-  # digitalantiz.identity:
-  #   image: quay.io/keycloak/keycloak:latest
-  #   container_name: Digitalantiz.Identity
-  #   command: start-dev #--import-realm
-  #   environment:
-  #     - KC_HEALTH_ENABLED=true
-  #     - KEYCLOAK_ADMIN=admin
-  #     - KEYCLOAK_ADMIN_PASSWORD=admin
-  #   volumes:
-  #     - ./.containers/identity:/opt/keycloak/data
-  #     - ./.files:/opt/keycloak/data/import
-  #   ports:
-  #     - 18080:8080
-  #     - 9000:9000 
+   
   digitalantiz.identity:
     image: quay.io/keycloak/keycloak:latest
     container_name: Digitalantiz.Identity
     command: start-dev
     environment:
     - KC_HEALTH_ENABLED=true
-    - KEYCLOAK_ADMIN=admin
-    - KEYCLOAK_ADMIN_PASSWORD=admin
+    - KEYCLOAK_ADMIN=${KEYCLOAK_USER}
+    - KEYCLOAK_ADMIN_PASSWORD=${KEYCLOAK_PASSWORD}
     - KC_DB=postgres
-    - KC_DB_URL=jdbc:postgresql://digitalantiz.database:5432/evently
-    - KC_DB_USERNAME=postgres
-    - KC_DB_PASSWORD=postgres
+    - KC_DB_URL=jdbc:postgresql://digitalantiz.database:${DB_PORT}/${DB_NAME}
+    - KC_DB_USERNAME=${DB_USER}
+    - KC_DB_PASSWORD=${DB_PASSWORD}
     volumes:
     - ./.containers/identity:/opt/keycloak/data
     - ./.files:/opt/keycloak/data/import
