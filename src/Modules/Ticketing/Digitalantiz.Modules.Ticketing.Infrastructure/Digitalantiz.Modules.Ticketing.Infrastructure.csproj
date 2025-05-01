@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Digitalantiz.Common.Infrastructure\Digitalantiz.Common.Infrastructure.csproj" />
+    <ProjectReference Include="..\Digitalantiz.Modules.Ticketing.Application\Digitalantiz.Modules.Ticketing.Application.csproj" />
+    <ProjectReference Include="..\Digitalantiz.Modules.Ticketing.Presentation\Digitalantiz.Modules.Ticketing.Presentation.csproj" />
+  </ItemGroup>
+</Project>

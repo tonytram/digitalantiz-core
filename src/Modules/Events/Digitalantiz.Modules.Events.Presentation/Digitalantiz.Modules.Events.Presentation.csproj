@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Common\Digitalantiz.Common.Presentation\Digitalantiz.Common.Presentation.csproj" />
+		<ProjectReference Include="..\Digitalantiz.Modules.Events.Application\Digitalantiz.Modules.Events.Application.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,71 @@
+services:
+  digitalantiz.api:
+    image: ${DOCKER_REGISTRY-}digitalantizapi
+    container_name: Digitalantiz.Api
+    build:
+      context: .
+      dockerfile: src/API/Digitalantiz.Api/Dockerfile
+    ports:
+      - 5000:8080
+      - 5001:8081
+
+  digitalantiz.database:
+    image: postgres:latest
+    container_name: Digitalantiz.Database
+    environment:
+      - POSTGRES_DB=evently
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./.containers/db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  digitalantiz.seq:
+    image: datalust/seq:latest
+    container_name: Digitalantiz.Seq
+    environment:
+      - ACCEPT_EULA=Y
+    ports:
+      - 5341:5341
+      - 8081:80
+
+  digitalantiz.redis:
+    image: redis:latest
+    container_name: Digitalantiz.Redis
+    restart: always
+    ports:
+      - 6379:6379
+  
+  # digitalantiz.identity:
+  #   image: quay.io/keycloak/keycloak:latest
+  #   container_name: Digitalantiz.Identity
+  #   command: start-dev #--import-realm
+  #   environment:
+  #     - KC_HEALTH_ENABLED=true
+  #     - KEYCLOAK_ADMIN=admin
+  #     - KEYCLOAK_ADMIN_PASSWORD=admin
+  #   volumes:
+  #     - ./.containers/identity:/opt/keycloak/data
+  #     - ./.files:/opt/keycloak/data/import
+  #   ports:
+  #     - 18080:8080
+  #     - 9000:9000 
+  digitalantiz.identity:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: Digitalantiz.Identity
+    command: start-dev
+    environment:
+    - KC_HEALTH_ENABLED=true
+    - KEYCLOAK_ADMIN=admin
+    - KEYCLOAK_ADMIN_PASSWORD=admin
+    - KC_DB=postgres
+    - KC_DB_URL=jdbc:postgresql://digitalantiz.database:5432/evently
+    - KC_DB_USERNAME=postgres
+    - KC_DB_PASSWORD=postgres
+    volumes:
+    - ./.containers/identity:/opt/keycloak/data
+    - ./.files:/opt/keycloak/data/import
+    ports:
+    - 18080:8080
+    - 9000:9000

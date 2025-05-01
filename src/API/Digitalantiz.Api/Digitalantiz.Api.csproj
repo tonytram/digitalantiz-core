@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UserSecretsId>779e1c94-0c4f-4f8b-b280-2ea39fe1dd2e</UserSecretsId>
+		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+		<DockerfileContext>..\..\..</DockerfileContext>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
+		<DockerComposeProjectPath>..\..\..\docker-compose.dcproj</DockerComposeProjectPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.1" />
+		<PackageReference Include="AspNetCore.HealthChecks.Uris" Version="8.0.1" />
+		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.11" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.11">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
+		<PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
+		<PackageReference Include="Serilog.Sinks.Seq" Version="8.0.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Modules\Events\Digitalantiz.Modules.Events.Infrastructure\Digitalantiz.Modules.Events.Infrastructure.csproj" />
+	  <ProjectReference Include="..\..\Modules\Ticketing\Digitalantiz.Modules.Ticketing.Infrastructure\Digitalantiz.Modules.Ticketing.Infrastructure.csproj" />
+	  <ProjectReference Include="..\..\Modules\Users\Digitalantiz.Modules.Users.Infrastructure\Digitalantiz.Modules.Users.Infrastructure.csproj" />
+	</ItemGroup>
+
+</Project>

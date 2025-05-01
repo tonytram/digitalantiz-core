@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+	  <PackageReference Include="EFCore.NamingConventions" Version="8.0.3" />
+	  <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.11" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Common\Digitalantiz.Common.Infrastructure\Digitalantiz.Common.Infrastructure.csproj" />
+		<ProjectReference Include="..\Digitalantiz.Modules.Events.Application\Digitalantiz.Modules.Events.Application.csproj" />
+		<ProjectReference Include="..\Digitalantiz.Modules.Events.Presentation\Digitalantiz.Modules.Events.Presentation.csproj" />
+	</ItemGroup>
+
+</Project>

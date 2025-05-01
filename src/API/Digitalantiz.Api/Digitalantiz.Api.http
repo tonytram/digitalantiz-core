@@ -1,0 +1,6 @@
+@Digitalantiz.Api_HostAddress = http://localhost:5161
+
+GET {{Digitalantiz.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

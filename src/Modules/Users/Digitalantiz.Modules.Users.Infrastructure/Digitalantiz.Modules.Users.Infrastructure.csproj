@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Common\Digitalantiz.Common.Infrastructure\Digitalantiz.Common.Infrastructure.csproj" />
+    <ProjectReference Include="..\Digitalantiz.Modules.Users.Application\Digitalantiz.Modules.Users.Application.csproj" />
+    <ProjectReference Include="..\Digitalantiz.Modules.Users.Presentation\Digitalantiz.Modules.Users.Presentation.csproj" />
+  </ItemGroup>
+
+</Project>

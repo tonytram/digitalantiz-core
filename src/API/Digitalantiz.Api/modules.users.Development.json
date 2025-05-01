@@ -1,0 +1,11 @@
+{
+  "Users": {
+    "KeyCloak": {
+      "AdminUrl": "http://digitalantiz.identity:8080/admin/realms/digitalantiz/",
+      "TokenUrl": "http://digitalantiz.identity:8080/realms/digitalantiz/protocol/openid-connect/token",
+      "ConfidentialClientId": "digitalantiz-confidential-client",
+      "ConfidentialClientSecret": "PzotcrvZRF9BHCKcUxdKfHWlIPECG49k",
+      "PublicClientId": "digitalantiz-public-client"
+    }
+  }
+}
