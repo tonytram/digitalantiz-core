@@ -21,6 +21,25 @@ services:
     ports:
       - 5432:5432
 
+  digitalantiz.identity:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: Digitalantiz.Identity
+    command: start-dev
+    environment:
+      - KC_HEALTH_ENABLED=true
+      - KEYCLOAK_ADMIN=${KEYCLOAK_USER}
+      - KEYCLOAK_ADMIN_PASSWORD=${KEYCLOAK_PASSWORD}
+      - KC_DB=postgres
+      - KC_DB_URL=jdbc:postgresql://digitalantiz.database:${DB_PORT}/${DB_NAME}
+      - KC_DB_USERNAME=${DB_USER}
+      - KC_DB_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./.containers/identity:/opt/keycloak/data
+      - ./.files:/opt/keycloak/data/import
+    ports:
+      - 18080:8080
+      - 9000:9000
+
   digitalantiz.seq:
     image: datalust/seq:latest
     container_name: Digitalantiz.Seq
@@ -36,22 +55,11 @@ services:
     restart: always
     ports:
       - 6379:6379
-   
-  digitalantiz.identity:
-    image: quay.io/keycloak/keycloak:latest
-    container_name: Digitalantiz.Identity
-    command: start-dev
-    environment:
-    - KC_HEALTH_ENABLED=true
-    - KEYCLOAK_ADMIN=${KEYCLOAK_USER}
-    - KEYCLOAK_ADMIN_PASSWORD=${KEYCLOAK_PASSWORD}
-    - KC_DB=postgres
-    - KC_DB_URL=jdbc:postgresql://digitalantiz.database:${DB_PORT}/${DB_NAME}
-    - KC_DB_USERNAME=${DB_USER}
-    - KC_DB_PASSWORD=${DB_PASSWORD}
-    volumes:
-    - ./.containers/identity:/opt/keycloak/data
-    - ./.files:/opt/keycloak/data/import
+
+  digitalantiz.jaeger:
+    image: jaegertracing/all-in-one:latest
+    container_name: Digitalantiz.Jaeger
     ports:
-    - 18080:8080
-    - 9000:9000
+      - 4317:4317
+      - 4318:4318
+      - 16686:16686

@@ -1,6 +1,7 @@
 using System.Net;
 using Digitalantiz.Api.Extensions;
 using Digitalantiz.Api.Middleware;
+using Digitalantiz.Api.OpenTelemetry;
 using Digitalantiz.Common.Application;
 using Digitalantiz.Common.Infrastructure;
 using Digitalantiz.Common.Presentation.Endpoints;
@@ -33,6 +34,7 @@ string databaseConnectionString = builder.Configuration.GetConnectionString("Dat
 string redisConnectionString = builder.Configuration.GetConnectionString("Cache")!;
 
 builder.Services.AddInfrastructure(
+    DiagnosticConfig.ServiceName,
     [TicketingModule.ConfigureConsumers],
     databaseConnectionString,
     redisConnectionString);
@@ -64,6 +66,8 @@ app.MapHealthChecks("health", new HealthCheckOptions
 {
     ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
 });
+
+app.UseLogContextTraceLogging();
 
 app.UseSerilogRequestLogging();
 
