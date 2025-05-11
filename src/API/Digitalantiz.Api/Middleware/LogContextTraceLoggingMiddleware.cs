@@ -3,7 +3,7 @@ using Serilog.Context;
 
 namespace Digitalantiz.Api.Middleware;
 
-public sealed class LogContextTraceLoggingMiddleware(RequestDelegate next)
+internal sealed class LogContextTraceLoggingMiddleware(RequestDelegate next)
 {
     public Task Invoke(HttpContext context)
     {
